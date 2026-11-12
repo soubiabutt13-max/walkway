@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Walk Way - Made to move with you</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        maroon: {
+                            50: '#fdf2f4',
+                            100: '#fbe6e9',
+                            600: '#a30029',
+                            700: '#800020',
+                            800: '#66001a',
+                            900: '#4d0014',
+                        },
+                        gold: {
+                            400: '#f3c649',
+                            500: '#d4af37',
+                            600: '#b89228',
+                        },
+                        offwhite: '#FAFAFD',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,800;1,600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #FAFAFD;
+            color: #1F2937;
+        }
+
+        .font-serif-heading {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #800020;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body class="bg-offwhite text-gray-900 antialiased selection:bg-maroon-700 selection:text-white">
+
+    <!-- Toast Notification Container -->
+    <div id="toastContainer" class="fixed top-24 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+    <!-- Top Announcement Bar -->
+    <div
+        class="bg-maroon-700 text-white text-xs md:text-sm py-2.5 px-4 text-center font-medium tracking-wide flex items-center justify-center gap-2 border-b border-maroon-800">
+        <span
+            class="bg-gold-500 text-gray-900 text-[10px] font-extrabold px-2 py-0.5 rounded-full uppercase tracking-wider">Offer</span>
+        <span>Free Shipping Across Pakistan on Orders Above PKR 5,000 | Cash on Delivery (COD) Available</span>
+    </div>
+
+    <!-- Header / Navigation -->
+    <header
+        class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+
+            <!-- Mobile Menu Toggle -->
+            <button onclick="toggleMobileNav()"
+                class="md:hidden text-gray-700 hover:text-maroon-700 focus:outline-none p-2">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+
+            <!-- Brand Logo -->
+            <div class="flex items-center gap-3 cursor-pointer group"
+                onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                <div
+                    class="bg-maroon-700 text-gold-400 w-11 h-11 rounded-2xl flex items-center justify-center font-extrabold text-2xl shadow-md group-hover:scale-105 transition-transform duration-300 border border-gold-500/30">
+                    W
+                </div>
+                <div>
+                    <h1 class="text-2xl font-black text-maroon-700 tracking-wider leading-none font-serif-heading">WALK
+                        WAY</h1>
+                    <p class="text-[9px] text-gray-500 uppercase tracking-[0.25em] font-bold mt-0.5">Footwear Studio</p>
+                </div>
+            </div>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-8 font-semibold text-sm">
+                <a href="#hero" class="text-maroon-700 border-b-2 border-maroon-700 py-1 transition">Home</a>
+                <a href="#collection" class="text-gray-600 hover:text-maroon-700 py-1 transition">Collection</a>
+                <a href="#brands" class="text-gray-600 hover:text-maroon-700 py-1 transition">Our Brands</a>
+                <a href="#size-guide" class="text-gray-600 hover:text-maroon-700 py-1 transition">Size Chart</a>
+                <a href="#footer" class="text-gray-600 hover:text-maroon-700 py-1 transition">Contact</a>
+            </nav>
+
+            <!-- Right Utilities (Search & Cart) -->
+            <div class="flex items-center gap-3 sm:gap-4">
+                <!-- Search Input -->
+                <div class="relative hidden sm:block">
+                    <input type="text" id="searchInput" placeholder="Search footwear..."
+                        class="bg-gray-100 text-xs sm:text-sm rounded-full pl-9 pr-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-maroon-700 focus:bg-white w-40 md:w-56 lg:w-64 border border-transparent transition-all">
+                    <i
+                        class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-gray-400 text-xs sm:text-sm"></i>
+                </div>
+
+                <!-- Wishlist Icon (Visual Mock) -->
+                <button onclick="showToast('Wishlist feature coming soon!', 'info')"
+                    class="text-gray-600 hover:text-maroon-700 transition p-2 relative rounded-full hover:bg-gray-100 hidden sm:flex">
+                    <i class="fa-regular fa-heart text-xl"></i>
+                </button>
+
+                <!-- Cart Icon Button -->
+                <button onclick="toggleCart()"
+                    class="relative bg-maroon-50 text-maroon-700 hover:bg-maroon-700 hover:text-white transition-all p-2.5 rounded-full flex items-center justify-center border border-maroon-100 shadow-sm group">
+                    <i class="fa-solid fa-bag-shopping text-lg"></i>
+                    <span id="cartBadge"
+                        class="absolute -top-1.5 -right-1.5 bg-gold-500 text-gray-900 text-[11px] font-black w-5 h-5 rounded-full flex items-center justify-center shadow-md border border-white">0</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav Menu Drawer -->
+        <div id="mobileNav"
+            class="hidden md:hidden border-t border-gray-100 bg-white px-4 pt-3 pb-6 space-y-3 shadow-lg">
+            <div class="relative mb-3">
+                <input type="text" id="searchInputMobile" placeholder="Search footwear..."
+                    class="bg-gray-100 w-full text-sm rounded-xl pl-9 pr-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-maroon-700">
+                <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-gray-400 text-sm"></i>
+            </div>
+            <a href="#hero" onclick="toggleMobileNav()"
+                class="block font-semibold text-gray-800 hover:text-maroon-700 py-2">Home</a>
+            <a href="#collection" onclick="toggleMobileNav()"
+                class="block font-semibold text-gray-800 hover:text-maroon-700 py-2">Collection</a>
+            <a href="#brands" onclick="toggleMobileNav()"
+                class="block font-semibold text-gray-800 hover:text-maroon-700 py-2">Our Brands</a>
+            <a href="#size-guide" onclick="toggleMobileNav()"
+                class="block font-semibold text-gray-800 hover:text-maroon-700 py-2">Size Chart</a>
+            <a href="#footer" onclick="toggleMobileNav()"
+                class="block font-semibold text-gray-800 hover:text-maroon-700 py-2">Contact Us</a>
+        </div>
+    </header>
+
+    <!-- Hero Banner Section -->
+    <section id="hero"
+        class="relative bg-gradient-to-r from-maroon-900 via-maroon-800 to-maroon-700 text-white py-16 sm:py-24 px-4 overflow-hidden">
+        <!-- Subtle Pattern Background -->
+        <div
+            class="absolute inset-0 opacity-10 pointer-events-none bg-[radial-gradient(#d4af37_1px,transparent_1px)] [background-size:16px_16px]">
+        </div>
+
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+            <!-- Text Content -->
+            <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                <div
+                    class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-1.5 rounded-full text-gold-400 text-xs font-bold uppercase tracking-widest shadow-inner">
+                    <i class="fa-solid fa-gem text-[10px]"></i> Luxury Pakistani Footwear
+                </div>
+
+                <h2
+                    class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight font-serif-heading">
+                    Made to move <br class="hidden sm:inline">
+                    <span class="text-gold-400 italic">with you.</span>
+                </h2>
+
+                <p
+                    class="text-gray-200 text-sm sm:text-base lg:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed font-light">
+                    Explore our curated collection of footwear. Premium Leather Shoes, Traditional Peshawari Chappals &
+                    Casual Sneakers handcrafted with precision for ultimate style and comfort.
+                </p>
+
+                <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 pt-4">
+                    <a href="#collection"
+                        class="bg-gold-500 hover:bg-gold-400 text-gray-900 font-extrabold px-8 py-4 rounded-xl shadow-lg hover:shadow-gold-500/20 transition-all text-center flex items-center justify-center gap-2 text-sm sm:text-base">
+                        <span>Explore Collection</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                    <a href="#brands"
+                        class="border border-white/30 hover:border-white text-white font-semibold px-8 py-4 rounded-xl hover:bg-white/10 transition-all text-center text-sm sm:text-base">
+                        View Partner Brands
+                    </a>
+                </div>
+
+                <!-- Stats / Key Metrics -->
+                <div
+                    class="pt-8 grid grid-cols-3 gap-4 border-t border-white/10 max-w-md mx-auto lg:mx-0 text-center lg:text-left">
+                    <div>
+                        <p class="text-2xl font-extrabold text-gold-400">100%</p>
+                        <p class="text-[11px] text-gray-300 uppercase tracking-wider font-medium">Real Leather</p>
+                    </div>
+                    <div>
+                        <p class="text-2xl font-extrabold text-gold-400">50K+</p>
+                        <p class="text-[11px] text-gray-300 uppercase tracking-wider font-medium">Happy Feet</p>
+                    </div>
+                    <div>
+                        <p class="text-2xl font-extrabold text-gold-400">COD</p>
+                        <p class="text-[11px] text-gray-300 uppercase tracking-wider font-medium">All Pakistan</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero Image Banner -->
+            <div class="lg:col-span-5 flex justify-center">
+                <div class="relative w-full max-w-md">
+                    <!-- Decorative Golden Circle Behind -->
+                    <div
+                        class="absolute -inset-2 bg-gradient-to-r from-gold-500 to-amber-600 rounded-3xl blur-xl opacity-30 animate-pulse">
+                    </div>
+
+                    <div
+                        class="relative bg-white/10 backdrop-blur-md p-4 rounded-3xl border border-white/20 shadow-2xl overflow-hidden group">
+                        <img id="heroImage"
+                            src="https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=800&q=80"
+                            alt="Walk Way Shoes"
+                            class="rounded-2xl object-cover w-full h-80 sm:h-96 shadow-md transform group-hover:scale-105 transition duration-700">
+                        <div
+                            class="absolute bottom-6 left-6 right-6 bg-gray-900/80 backdrop-blur-md p-4 rounded-xl border border-white/10 text-white flex justify-between items-center">
+                            <div>
+                                <p class="text-xs text-gold-400 font-bold uppercase tracking-wider">Featured Handcraft
+                                </p>
+                                <p class="font-bold text-sm">Royal Peshawari Chappal</p>
+                            </div>
+                            <span class="text-xs font-extrabold bg-maroon-700 text-white px-3 py-1.5 rounded-lg">PKR
+                                4,499</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trusted Brands Section -->
+    <!-- <section id="brands" class="py-12 bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-xs uppercase tracking-widest text-gray-400 font-extrabold mb-8">Official Partner Brands & Inspirations</p>
+            
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 items-center opacity-85">
+                <div class="p-4 rounded-xl bg-gray-50 hover:bg-maroon-50 border border-gray-100 transition-colors group cursor-pointer">
+                    <span class="text-xl font-bold tracking-widest text-gray-700 group-hover:text-maroon-700 font-serif">BORJAN</span>
+                </div>
+                <div class="p-4 rounded-xl bg-gray-50 hover:bg-maroon-50 border border-gray-100 transition-colors group cursor-pointer">
+                    <span class="text-xl font-black tracking-widest text-gray-800 group-hover:text-maroon-700">SERVIS</span>
+                </div>
+                <div class="p-4 rounded-xl bg-gray-50 hover:bg-maroon-50 border border-gray-100 transition-colors group cursor-pointer">
+                    <span class="text-xl font-semibold tracking-wide text-gray-700 italic group-hover:text-maroon-700">STYLO</span>
+                </div>
+                <div class="p-4 rounded-xl bg-gray-50 hover:bg-maroon-50 border border-gray-100 transition-colors group cursor-pointer">
+                    <span class="text-xl font-extrabold tracking-widest text-gray-800 group-hover:text-maroon-700">BATA</span>
+                </div>
+                <div class="p-4 rounded-xl bg-gray-50 hover:bg-maroon-50 border border-gray-100 transition-colors group cursor-pointer">
+                    <span class="text-xl font-light tracking-widest text-gray-700 group-hover:text-maroon-700">METRO</span>
+                </div>
+                <div class="p-4 rounded-xl bg-gray-50 hover:bg-maroon-50 border border-gray-100 transition-colors group cursor-pointer">
+                    <span class="text-sm font-black tracking-wider text-maroon-700">WALK WAY CLASSICS</span>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Main Footwear Collection Section -->
+    <section id="collection" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+
+        <!-- Section Header -->
+        <div class="text-center max-w-3xl mx-auto mb-10 space-y-3">
+            <span
+                class="text-xs font-extrabold text-maroon-700 uppercase tracking-widest bg-maroon-50 px-3 py-1 rounded-full border border-maroon-100">Curated
+                Footwear</span>
+            <h3 class="text-3xl sm:text-4xl font-extrabold text-gray-900 font-serif-heading">Explore Our Collection</h3>
+            <p class="text-gray-500 text-sm sm:text-base leading-relaxed">
+                Filter by your favorite Pakistani styles. Click any shoe to view 3 HD photos, check standard size
+                details, and place your instant order.
+            </p>
+
+            <!-- Dynamic Category Filter Buttons -->
+            <div id="categoryFilters" class="flex flex-wrap justify-center gap-2 sm:gap-3 pt-6">
+                <button onclick="filterCategory('All', this)"
+                    class="cat-btn active bg-maroon-700 text-white shadow-md border border-maroon-700 px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all">
+                    All Footwear
+                </button>
+                <button onclick="filterCategory('Peshawari Chappal', this)"
+                    class="cat-btn bg-white text-gray-700 border border-gray-200 hover:border-maroon-700 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all">
+                    Peshawari Chappal
+                </button>
+                <button onclick="filterCategory('Sneakers', this)"
+                    class="cat-btn bg-white text-gray-700 border border-gray-200 hover:border-maroon-700 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all">
+                    Sneakers
+                </button>
+                <button onclick="filterCategory('Loafers', this)"
+                    class="cat-btn bg-white text-gray-700 border border-gray-200 hover:border-maroon-700 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all">
+                    Loafers
+                </button>
+                <button onclick="filterCategory('Sandals', this)"
+                    class="cat-btn bg-white text-gray-700 border border-gray-200 hover:border-maroon-700 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all">
+                    Sandals
+                </button>
+                <button onclick="filterCategory('Slippers', this)"
+                    class="cat-btn bg-white text-gray-700 border border-gray-200 hover:border-maroon-700 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all">
+                    Slippers
+                </button>
+            </div>
+        </div>
+
+        <!-- Product Cards Grid -->
+        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 pt-4">
+            <!-- JavaScript dynamically injects products here -->
+        </div>
+    </section>
+
+    <!-- Size Guide & Features Info Section -->
+    <section id="size-guide" class="bg-gray-100 py-16 border-t border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <h3 class="text-2xl sm:text-3xl font-extrabold text-maroon-700 font-serif-heading">Pakistani Footwear
+                    Sizing & Trust</h3>
+                <p class="text-gray-600 text-sm mt-2">All our shoes follow true-to-size EU/PK standards for a
+                    comfortable fit.</p>
+            </div>
+
+            <!-- Features 3-Card Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Size Chart Card -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-200 hover:shadow-md transition">
+                    <div
+                        class="w-12 h-12 bg-maroon-700 text-gold-400 rounded-2xl flex items-center justify-center mb-5 text-xl shadow-md">
+                        <i class="fa-solid fa-ruler-combined"></i>
+                    </div>
+                    <h4 class="font-bold text-lg text-gray-900 mb-2">Standard Size Fitting</h4>
+                    <p class="text-gray-600 text-xs sm:text-sm leading-relaxed mb-4">
+                        We offer sizes EU 39 through 44. If you wear size 41 in local brands like Bata or Servis, order
+                        size 41 with us!
+                    </p>
+                    <div class="bg-gray-50 p-3 rounded-xl border border-gray-200 text-xs space-y-1">
+                        <div class="flex justify-between font-bold text-gray-700"><span>EU 39</span><span>24.5 cm</span>
+                        </div>
+                        <div class="flex justify-between font-bold text-gray-700"><span>EU 41</span><span>26.0 cm</span>
+                        </div>
+                        <div class="flex justify-between font-bold text-gray-700"><span>EU 44</span><span>28.5 cm</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Material Card -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-200 hover:shadow-md transition">
+                    <div
+                        class="w-12 h-12 bg-maroon-700 text-gold-400 rounded-2xl flex items-center justify-center mb-5 text-xl shadow-md">
+                        <i class="fa-solid fa-shield-cat"></i>
+                    </div>
+                    <h4 class="font-bold text-lg text-gray-900 mb-2">100% Leather Guarantee</h4>
+                    <p class="text-gray-600 text-xs sm:text-sm leading-relaxed">
+                        Crafted from premium cow and calf leather for our Peshawari Chappals and Loafers. Engineered
+                        soft soles ensure all-day comfort without foot fatigue.
+                    </p>
+                </div>
+
+                <!-- Shipping Card -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-200 hover:shadow-md transition">
+                    <div
+                        class="w-12 h-12 bg-maroon-700 text-gold-400 rounded-2xl flex items-center justify-center mb-5 text-xl shadow-md">
+                        <i class="fa-solid fa-truck-fast"></i>
+                    </div>
+                    <h4 class="font-bold text-lg text-gray-900 mb-2">Fast COD Delivery</h4>
+                    <p class="text-gray-600 text-xs sm:text-sm leading-relaxed">
+                        Delivered within 3-5 working days across Karachi, Lahore, Islamabad, Rawalpindi, Peshawar,
+                        Multan, Faisalabad, Quetta, and all other cities.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer" class="bg-gray-950 text-white pt-16 pb-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+            <!-- Col 1: Brand Info -->
+            <div class="space-y-4">
+                <div class="flex items-center gap-3">
+                    <div
+                        class="bg-maroon-700 text-gold-400 w-10 h-10 rounded-xl flex items-center justify-center font-extrabold text-xl shadow-md">
+                        W</div>
+                    <h2 class="text-2xl font-black text-gold-400 tracking-wider font-serif-heading">WALK WAY</h2>
+                </div>
+                <p class="text-gray-400 text-xs sm:text-sm leading-relaxed">
+                    Made to move with you. High-grade traditional Peshawari chappals, stylish leather loafers, and
+                    casual sneakers delivered nationwide.
+                </p>
+                <div class="flex space-x-3 pt-2">
+                    <a href="#"
+                        class="w-9 h-9 bg-gray-800 hover:bg-maroon-700 text-gray-300 hover:text-white rounded-full flex items-center justify-center transition"><i
+                            class="fa-brands fa-facebook-f text-sm"></i></a>
+                    <a href="#"
+                        class="w-9 h-9 bg-gray-800 hover:bg-maroon-700 text-gray-300 hover:text-white rounded-full flex items-center justify-center transition"><i
+                            class="fa-brands fa-instagram text-sm"></i></a>
+                    <a href="#"
+                        class="w-9 h-9 bg-gray-800 hover:bg-maroon-700 text-gray-300 hover:text-white rounded-full flex items-center justify-center transition"><i
+                            class="fa-brands fa-whatsapp text-sm"></i></a>
+                </div>
+            </div>
+
+            <!-- Col 2: Categories -->
+            <div>
+                <h4 class="text-sm font-bold uppercase tracking-wider text-gold-400 mb-4">Footwear Categories</h4>
+                <ul class="space-y-2.5 text-xs sm:text-sm text-gray-400">
+                    <li><a href="#collection" onclick="filterCategoryByName('Peshawari Chappal')"
+                            class="hover:text-white transition flex items-center gap-2"><i
+                                class="fa-solid fa-angle-right text-[10px] text-maroon-700"></i> Peshawari Chappal</a>
+                    </li>
+                    <li><a href="#collection" onclick="filterCategoryByName('Sneakers')"
+                            class="hover:text-white transition flex items-center gap-2"><i
+                                class="fa-solid fa-angle-right text-[10px] text-maroon-700"></i> Casual Sneakers</a>
+                    </li>
+                    <li><a href="#collection" onclick="filterCategoryByName('Loafers')"
+                            class="hover:text-white transition flex items-center gap-2"><i
+                                class="fa-solid fa-angle-right text-[10px] text-maroon-700"></i> Leather Loafers</a>
+                    </li>
+                    <li><a href="#collection" onclick="filterCategoryByName('Sandals')"
+                            class="hover:text-white transition flex items-center gap-2"><i
+                                class="fa-solid fa-angle-right text-[10px] text-maroon-700"></i> Comfort Sandals</a>
+                    </li>
+                    <li><a href="#collection" onclick="filterCategoryByName('Slippers')"
+                            class="hover:text-white transition flex items-center gap-2"><i
+                                class="fa-solid fa-angle-right text-[10px] text-maroon-700"></i> Indoor Slippers</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Col 3: Customer Care -->
+            <div>
+                <h4 class="text-sm font-bold uppercase tracking-wider text-gold-400 mb-4">Customer Support</h4>
+                <ul class="space-y-3 text-xs sm:text-sm text-gray-400">
+                    <li class="flex items-start gap-3">
+                        <i class="fa-brands fa-whatsapp text-green-500 text-lg mt-0.5"></i>
+                        <div>
+                            <span class="block text-gray-200 font-bold">WhatsApp Order Hotline:</span>
+                            <span>+92 300 1234567</span>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-envelope text-maroon-600 text-base mt-0.5"></i>
+                        <div>
+                            <span class="block text-gray-200 font-bold">Email Support:</span>
+                            <span>orders@walkway.pk</span>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-rotate-left text-gold-400 text-base mt-0.5"></i>
+                        <div>
+                            <span class="block text-gray-200 font-bold">Exchange Policy:</span>
+                            <span>7-Day Easy Size Replacement</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Col 4: Newsletter -->
+            <div>
+                <h4 class="text-sm font-bold uppercase tracking-wider text-gold-400 mb-4">Join Walk Way Club</h4>
+                <p class="text-gray-400 text-xs leading-relaxed mb-4">
+                    Subscribe for exclusive discounts on Eid drops, new shoe launches, and sale alerts.
+                </p>
+                <form onsubmit="event.preventDefault(); showToast('Subscribed successfully!', 'success');"
+                    class="flex flex-col gap-2">
+                    <input type="email" required placeholder="Enter your email"
+                        class="bg-gray-900 border border-gray-800 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-maroon-700">
+                    <button type="submit"
+                        class="bg-maroon-700 hover:bg-maroon-800 text-white font-bold text-xs py-3 rounded-xl transition shadow-md">
+                        Subscribe Now
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div
+            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-gray-900 text-center text-xs text-gray-500 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p>&copy; 2026 Walk Way Footwear Studio. All Rights Reserved.</p>
+            <div class="flex gap-4 text-gray-400">
+                <span><i class="fa-solid fa-shield-halved text-green-500 mr-1"></i> SSL Secured</span>
+                <span><i class="fa-solid fa-money-bill-wave text-gold-400 mr-1"></i> Cash on Delivery</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- PRODUCT DETAIL MODAL WITH 3-IMAGE SWAPPER -->
+    <div id="productModal"
+        class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div
+            class="bg-white rounded-3xl max-w-4xl w-full overflow-hidden shadow-2xl relative animate-in fade-in zoom-in duration-200 max-h-[92vh] flex flex-col">
+            <!-- Close Button -->
+            <button onclick="closeModal()"
+                class="absolute top-4 right-4 z-20 w-10 h-10 bg-gray-100 hover:bg-maroon-700 hover:text-white rounded-full flex items-center justify-center text-gray-700 transition shadow">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <div id="modalContent"
+                class="overflow-y-auto custom-scrollbar p-6 sm:p-8 grid grid-cols-1 md:grid-cols-12 gap-8">
+                <!-- Dynamically populated product gallery & details -->
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE-OVER SHOPPING CART DRAWER -->
+    <div id="cartDrawer" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex justify-end">
+        <div class="bg-white w-full max-w-md h-full flex flex-col shadow-2xl">
+            <!-- Cart Header -->
+            <div class="p-5 border-b border-gray-200 flex items-center justify-between bg-maroon-700 text-white">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-bag-shopping text-gold-400 text-xl"></i>
+                    <h3 class="font-extrabold text-lg tracking-wide">Your Shopping Cart</h3>
+                </div>
+                <button onclick="toggleCart()" class="text-white hover:text-gold-400 transition text-xl">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Cart Items List -->
+            <div id="cartItemsList" class="flex-1 overflow-y-auto custom-scrollbar p-5 space-y-4">
+                <!-- Cart items injected via JS -->
+            </div>
+
+            <!-- Cart Summary Footer -->
+            <div class="p-5 border-t border-gray-200 bg-gray-50 space-y-3">
+                <div class="flex justify-between text-xs sm:text-sm text-gray-600">
+                    <span>Subtotal</span>
+                    <span id="cartSubtotal" class="font-bold text-gray-900">PKR 0</span>
+                </div>
+                <div class="flex justify-between text-xs sm:text-sm text-gray-600">
+                    <span>Delivery Charges (Pakistan)</span>
+                    <span id="cartDelivery" class="font-bold text-gray-900">PKR 250</span>
+                </div>
+                <div class="flex justify-between text-base font-extrabold text-gray-900 pt-2 border-t border-gray-200">
+                    <span>Total Amount</span>
+                    <span id="cartTotal" class="text-maroon-700 text-xl">PKR 250</span>
+                </div>
+                <button onclick="openCheckoutForm()"
+                    class="w-full bg-maroon-700 hover:bg-maroon-800 text-white font-extrabold py-4 rounded-xl shadow-lg transition flex items-center justify-center gap-2 text-sm sm:text-base">
+                    <span>Proceed to WhatsApp Checkout</span>
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- WHATSAPP CHECKOUT MODAL -->
+    <div id="checkoutModal"
+        class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div
+            class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto custom-scrollbar">
+            <button onclick="closeCheckoutForm()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+
+            <div class="flex items-center gap-3 mb-2">
+                <div class="w-10 h-10 bg-green-100 text-green-600 rounded-xl flex items-center justify-center text-xl">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </div>
+                <div>
+                    <h3 class="text-xl font-extrabold text-gray-900">Direct WhatsApp Order</h3>
+                    <p class="text-xs text-gray-500">Fill details below to confirm order via WhatsApp</p>
+                </div>
+            </div>
+
+            <form id="whatsappOrderForm" onsubmit="submitWhatsAppOrder(event)" class="space-y-4 mt-5">
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Full Name *</label>
+                    <input type="text" id="custName" required placeholder="e.g. Muhammad Hamza"
+                        class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-maroon-700 focus:bg-white">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">WhatsApp / Mobile Number
+                        *</label>
+                    <input type="tel" id="custPhone" required placeholder="e.g. 03001234567"
+                        class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-maroon-700 focus:bg-white">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">City *</label>
+                    <select id="custCity" required
+                        class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-maroon-700 focus:bg-white">
+                        <option value="">Select City</option>
+                        <option value="Karachi">Karachi</option>
+                        <option value="Lahore">Lahore</option>
+                        <option value="Islamabad">Islamabad</option>
+                        <option value="Rawalpindi">Rawalpindi</option>
+                        <option value="Peshawar">Peshawar</option>
+                        <option value="Faisalabad">Faisalabad</option>
+                        <option value="Multan">Multan</option>
+                        <option value="Quetta">Quetta</option>
+                        <option value="Hyderabad">Hyderabad</option>
+                        <option value="Sialkot">Sialkot</option>
+                        <option value="Gujranwala">Gujranwala</option>
+                        <option value="Other">Other City</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Complete Delivery Address
+                        *</label>
+                    <textarea id="custAddress" required rows="2"
+                        placeholder="House/Flat No, Street Name, Area, Landmark"
+                        class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-maroon-700 focus:bg-white"></textarea>
+                </div>
+
+                <div class="bg-amber-50 border border-amber-200 p-3.5 rounded-xl text-xs space-y-1">
+                    <div class="flex justify-between font-bold text-amber-900">
+                        <span>Payment Method:</span>
+                        <span>Cash on Delivery (COD)</span>
+                    </div>
+                    <p class="text-amber-700 text-[11px]">Pay cash when your order arrives at your address.</p>
+                </div>
+
+                <button type="submit"
+                    class="w-full bg-green-600 hover:bg-green-700 text-white font-extrabold py-4 rounded-xl shadow-lg transition flex items-center justify-center gap-2 text-sm sm:text-base mt-2">
+                    <i class="fa-brands fa-whatsapp text-xl"></i>
+                    <span>Confirm & Send Order on WhatsApp</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Footwear Database with 3 Swapable Images per item
+        const products = [
+            {
+                id: 1,
+                name: "Imperial Black Peshawari Chappal",
+                category: "Peshawari Chappal",
+                price: 4499,
+                originalPrice: 5999,
+                rating: 4.9,
+                reviews: 142,
+                badge: "25% OFF",
+                images: [
+                    "images/pes-1.jpeg",
+                    "images/pes-2.jpeg",
+                    "images/pes-3.jpeg"
+                ],
+                description: "Handcrafted pure leather Peshawari chappal with ergonomic memory foam inner padding and traditional double-tola rubber tire sole."
+            },
+            {
+                id: 2,
+                name: "Royal Tan Leather Loafers",
+                category: "Loafers",
+                price: 5899,
+                originalPrice: 7499,
+                rating: 4.8,
+                reviews: 98,
+                badge: "Top Rated",
+                images: [
+                    "images/lof2-1.jpeg", // Main Image
+                    "images/lof2-2.jpeg", // Side Image
+                    "images/lof2-3.jpeg"  // Top Image
+                ],
+                description: "Executive tan calf-skin leather loafers. Ideal for office wear, weddings, and formal Pakistani attire."
+            },
+            {
+                id: 3,
+                name: "Urban Street White Sneakers",
+                category: "Sneakers",
+                price: 3999,
+                originalPrice: 4999,
+                rating: 4.7,
+                reviews: 215,
+                badge: "Hot Deal",
+                images: [
+                    "images/sneak3-1.jpeg", // Main Image
+                    "images/sneak3-2.jpeg", // Side Image
+                    "images/sneak3-3.jpeg"  // Top Image
+                ],
+                description: "Clean minimalist white sneakers crafted with breathable synthetic leather and high-traction rubber outsole for daily wear."
+            },
+            {
+                id: 4,
+                name: "Charsadda Traditional Chappal",
+                category: "Peshawari Chappal",
+                price: 3899,
+                originalPrice: 4899,
+                rating: 4.9,
+                reviews: 164,
+                badge: "Best Seller",
+                images: [
+                    "images/char4-1.jpeg", // Main Image
+                    "images/char4-2.jpeg", // Side Image
+                    "images/char4-3.jpeg"  // Top Image
+                ],
+                description: "Authentic Khattak style handmade Charsadda chappal in rich brown leather finish. Durable stitching for years of comfortable wear."
+            },
+            {
+                id: 5,
+                name: "Executive Leather Sandals",
+                category: "Sandals",
+                price: 3499,
+                originalPrice: 4500,
+                rating: 4.6,
+                reviews: 82,
+                badge: "Sale",
+                images: [
+                    "images/sand5-1.jpeg", // Main Image
+                    "images/sand5-2.jpeg", // Side Image
+                    "images/sand5-3.jpeg"  // Top Image
+                ],
+                description: "Open-toe summer leather sandals with adjustable strap. Engineered specifically for warm Pakistani weather."
+            },
+            {
+                id: 6,
+                name: "Soft Touch Leather Slippers",
+                category: "Slippers",
+                price: 1999,
+                originalPrice: 2799,
+                rating: 4.8,
+                reviews: 156,
+                badge: "30% OFF",
+                images: [
+                    "images/slip6-1.jpeg", // Main Image
+                    "images/slip6-2.jpeg", // Side Image
+                    "images/slip6-3.jpeg"  // Top Image
+                ],
+                description: "Ultra-comfortable home & casual slippers featuring soft genuine leather top and flexible non-slip rubber bottom."
+            }
+        ];
+
+        let cart = [];
+        let currentSelectedSize = "41";
+        let activeCategory = "All";
+
+        // Render Product Cards
+        function renderProducts(category = "All", searchQuery = "") {
+            const grid = document.getElementById("productGrid");
+            grid.innerHTML = "";
+
+            const filtered = products.filter(p => {
+                const matchesCat = category === "All" || p.category === category;
+                const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                    p.category.toLowerCase().includes(searchQuery.toLowerCase());
+                return matchesCat && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full text-center py-16 bg-white rounded-3xl border border-gray-200">
+                        <i class="fa-solid fa-shoe-prints text-4xl text-gray-300 mb-3"></i>
+                        <h4 class="font-bold text-gray-700 text-lg">No footwear found</h4>
+                        <p class="text-xs text-gray-400 mt-1">Try searching for another category or shoe style.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            filtered.forEach(product => {
+                grid.innerHTML += `
+                    <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col justify-between group">
+                        <div class="relative cursor-pointer overflow-hidden bg-gray-100" onclick="openProductModal(${product.id})">
+                            <span class="absolute top-3 left-3 bg-maroon-700 text-white text-[10px] font-extrabold px-3 py-1 rounded-full z-10 shadow-md">
+                                ${product.badge}
+                            </span>
+                            <img src="${product.images[0]}" alt="${product.name}" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500">
+                            
+                            <!-- Overlay Hover CTA -->
+                            <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-4">
+                                <span class="bg-white/90 backdrop-blur-md text-gray-900 text-xs font-bold px-4 py-2.5 rounded-xl shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-transform">
+                                    <i class="fa-solid fa-eye text-maroon-700 mr-1.5"></i> View 3 Photos & Sizes
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="p-5 flex flex-col flex-1 justify-between space-y-4">
+                            <div>
+                                <span class="text-[11px] text-gray-400 uppercase tracking-widest font-bold">${product.category}</span>
+                                <h4 onclick="openProductModal(${product.id})" class="font-bold text-base text-gray-900 mt-1 cursor-pointer hover:text-maroon-700 transition leading-snug">
+                                    ${product.name}
+                                </h4>
+                                
+                                <div class="flex items-center space-x-1.5 mt-2 text-xs">
+                                    <div class="text-amber-400">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <span class="font-bold text-gray-800">${product.rating}</span>
+                                    <span class="text-gray-400 text-[11px]">(${product.reviews} reviews)</span>
+                                </div>
+                            </div>
+
+                            <div class="pt-3 border-t border-gray-100 flex items-center justify-between">
+                                <div>
+                                    <span class="text-xs text-gray-400 line-through">PKR ${product.originalPrice.toLocaleString()}</span>
+                                    <p class="text-lg font-extrabold text-maroon-700">PKR ${product.price.toLocaleString()}</p>
+                                </div>
+                                
+                                <button onclick="openProductModal(${product.id})" class="bg-maroon-700 hover:bg-maroon-800 text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow-md transition flex items-center gap-1.5">
+                                    <span>Select & Buy</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // Filter Categories
+        function filterCategory(categoryName, btnElement) {
+            activeCategory = categoryName;
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                btn.classList.remove('bg-maroon-700', 'text-white', 'shadow-md');
+                btn.classList.add('bg-white', 'text-gray-700', 'border', 'border-gray-200');
+            });
+            btnElement.classList.remove('bg-white', 'text-gray-700', 'border', 'border-gray-200');
+            btnElement.classList.add('bg-maroon-700', 'text-white', 'shadow-md');
+
+            const searchVal = document.getElementById("searchInput").value;
+            renderProducts(categoryName, searchVal);
+        }
+
+        function filterCategoryByName(catName) {
+            const buttons = document.querySelectorAll('.cat-btn');
+            buttons.forEach(btn => {
+                if (btn.innerText.includes(catName)) {
+                    filterCategory(catName, btn);
+                }
+            });
+        }
+
+        // Search Input Event Listeners
+        document.getElementById("searchInput").addEventListener("input", (e) => {
+            renderProducts(activeCategory, e.target.value);
+        });
+        document.getElementById("searchInputMobile").addEventListener("input", (e) => {
+            renderProducts(activeCategory, e.target.value);
+        });
+
+        // Open Modal with 3-Image Gallery Swapper
+        function openProductModal(id) {
+            const product = products.find(p => p.id === id);
+            currentSelectedSize = "41";
+
+            const modalContent = document.getElementById("modalContent");
+            modalContent.innerHTML = `
+                <!-- 3-Image Swapper Gallery (Col 1) -->
+                <div class="md:col-span-6 space-y-4">
+                    <div class="relative rounded-2xl overflow-hidden shadow-md bg-gray-100 h-72 sm:h-80 border border-gray-200">
+                        <img id="mainSwapImage" src="${product.images[0]}" alt="${product.name}" class="w-full h-full object-cover">
+                        <span class="absolute bottom-3 left-3 bg-black/70 backdrop-blur-md text-white text-[10px] px-2.5 py-1 rounded-full font-bold">
+                            Click thumbnails to swap photos
+                        </span>
+                    </div>
+                    
+                    <!-- Thumbnail Swappers -->
+                    <div class="grid grid-cols-3 gap-3">
+                        <button onclick="swapModalImage('${product.images[0]}', this)" class="swap-thumb rounded-xl overflow-hidden border-2 border-maroon-700 h-20 shadow-sm focus:outline-none transition">
+                            <img src="${product.images[0]}" class="w-full h-full object-cover">
+                        </button>
+                        <button onclick="swapModalImage('${product.images[1]}', this)" class="swap-thumb rounded-xl overflow-hidden border-2 border-transparent opacity-70 hover:opacity-100 h-20 shadow-sm focus:outline-none transition">
+                            <img src="${product.images[1]}" class="w-full h-full object-cover">
+                        </button>
+                        <button onclick="swapModalImage('${product.images[2]}', this)" class="swap-thumb rounded-xl overflow-hidden border-2 border-transparent opacity-70 hover:opacity-100 h-20 shadow-sm focus:outline-none transition">
+                            <img src="${product.images[2]}" class="w-full h-full object-cover">
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product Info & Size Selection (Col 2) -->
+                <div class="md:col-span-6 flex flex-col justify-between space-y-6">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-maroon-700 bg-maroon-50 px-2.5 py-1 rounded-md border border-maroon-100">
+                            ${product.category}
+                        </span>
+                        
+                        <h3 class="text-2xl font-extrabold text-gray-900 mt-2 leading-tight font-serif-heading">${product.name}</h3>
+                        
+                        <div class="flex items-center space-x-2 mt-2">
+                            <div class="text-amber-400 text-sm"><i class="fa-solid fa-star"></i></div>
+                            <span class="font-bold text-sm text-gray-800">${product.rating}</span>
+                            <span class="text-gray-300">|</span>
+                            <span class="text-xs text-gray-500">${product.reviews} Verified Customer Reviews</span>
+                        </div>
+
+                        <div class="mt-4 flex items-baseline space-x-3">
+                            <span class="text-2xl font-extrabold text-maroon-700">PKR ${product.price.toLocaleString()}</span>
+                            <span class="text-sm text-gray-400 line-through">PKR ${product.originalPrice.toLocaleString()}</span>
+                            <span class="text-xs text-green-600 font-bold bg-green-50 px-2 py-0.5 rounded">Save PKR ${(product.originalPrice - product.price).toLocaleString()}</span>
+                        </div>
+
+                        <p class="text-xs sm:text-sm text-gray-600 mt-3 leading-relaxed">${product.description}</p>
+
+                        <!-- Size Selector -->
+                        <div class="mt-6">
+                            <div class="flex justify-between items-center mb-2">
+                                <label class="text-xs font-extrabold uppercase text-gray-800">Select EU/PK Size:</label>
+                                <button onclick="showToast('Pakistani Standard Sizing: Size 39 (24.5cm) to 44 (28.5cm)', 'info')" class="text-xs text-maroon-700 font-bold hover:underline flex items-center gap-1">
+                                    <i class="fa-solid fa-circle-info"></i> Fitting Info
+                                </button>
+                            </div>
+
+                            <div class="grid grid-cols-6 gap-2">
+                                <button onclick="selectSize('39', this)" class="modal-size-btn border border-gray-200 py-2.5 rounded-xl text-xs font-bold hover:border-maroon-700 transition">39</button>
+                                <button onclick="selectSize('40', this)" class="modal-size-btn border border-gray-200 py-2.5 rounded-xl text-xs font-bold hover:border-maroon-700 transition">40</button>
+                                <button onclick="selectSize('41', this)" class="modal-size-btn bg-maroon-700 text-white py-2.5 rounded-xl text-xs font-bold shadow-md transition">41</button>
+                                <button onclick="selectSize('42', this)" class="modal-size-btn border border-gray-200 py-2.5 rounded-xl text-xs font-bold hover:border-maroon-700 transition">42</button>
+                                <button onclick="selectSize('43', this)" class="modal-size-btn border border-gray-200 py-2.5 rounded-xl text-xs font-bold hover:border-maroon-700 transition">43</button>
+                                <button onclick="selectSize('44', this)" class="modal-size-btn border border-gray-200 py-2.5 rounded-xl text-xs font-bold hover:border-maroon-700 transition">44</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CTA Action Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-3 pt-2">
+                        <button onclick="addToCart(${product.id})" class="flex-1 bg-gray-900 hover:bg-black text-white font-bold py-3.5 rounded-xl text-sm transition shadow-md flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            <span>Add to Cart</span>
+                        </button>
+                        <button onclick="directBuyWhatsApp(${product.id})" class="flex-1 bg-maroon-700 hover:bg-maroon-800 text-white font-bold py-3.5 rounded-xl text-sm transition shadow-md flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-base"></i>
+                            <span>Buy via WhatsApp</span>
+                        </button>
+                    </div>
+                </div>
+            `;
+            document.getElementById("productModal").classList.remove("hidden");
+        }
+
+        function swapModalImage(url, btn) {
+            document.getElementById("mainSwapImage").src = url;
+            document.querySelectorAll('.swap-thumb').forEach(b => {
+                b.classList.remove('border-maroon-700', 'opacity-100');
+                b.classList.add('border-transparent', 'opacity-70');
+            });
+            btn.classList.remove('border-transparent', 'opacity-70');
+            btn.classList.add('border-maroon-700', 'opacity-100');
+        }
+
+        function selectSize(size, btn) {
+            currentSelectedSize = size;
+            document.querySelectorAll('.modal-size-btn').forEach(b => {
+                b.classList.remove('bg-maroon-700', 'text-white', 'shadow-md');
+                b.classList.add('border', 'border-gray-200', 'text-gray-800');
+            });
+            btn.classList.remove('border', 'border-gray-200', 'text-gray-800');
+            btn.classList.add('bg-maroon-700', 'text-white', 'shadow-md');
+        }
+
+        function closeModal() {
+            document.getElementById("productModal").classList.add("hidden");
+        }
+
+        // Cart Slide-Over Drawer
+        function toggleCart() {
+            const drawer = document.getElementById("cartDrawer");
+            drawer.classList.toggle("hidden");
+            updateCartUI();
+        }
+
+        function addToCart(id) {
+            const product = products.find(p => p.id === id);
+            const existing = cart.find(item => item.id === id && item.size === currentSelectedSize);
+
+            if (existing) {
+                existing.qty += 1;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    image: product.images[0],
+                    size: currentSelectedSize,
+                    qty: 1
+                });
+            }
+
+            updateCartBadge();
+            closeModal();
+            toggleCart();
+            showToast(`Added ${product.name} (Size ${currentSelectedSize}) to Cart!`, 'success');
+        }
+
+        function directBuyWhatsApp(id) {
+            addToCart(id);
+            openCheckoutForm();
+        }
+
+        function updateCartBadge() {
+            const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+            document.getElementById("cartBadge").innerText = totalItems;
+        }
+
+        function updateCartUI() {
+            const list = document.getElementById("cartItemsList");
+            list.innerHTML = "";
+
+            if (cart.length === 0) {
+                list.innerHTML = `
+                    <div class="text-center py-16 text-gray-400">
+                        <i class="fa-solid fa-bag-shopping text-4xl mb-3 text-gray-200"></i>
+                        <p class="font-bold text-gray-600">Your cart is currently empty.</p>
+                        <p class="text-xs text-gray-400 mt-1">Browse our collection and add your favorite shoes.</p>
+                    </div>
+                `;
+                document.getElementById("cartSubtotal").innerText = "PKR 0";
+                document.getElementById("cartTotal").innerText = "PKR 250";
+                return;
+            }
+
+            let subtotal = 0;
+            cart.forEach((item, index) => {
+                subtotal += item.price * item.qty;
+                list.innerHTML += `
+                    <div class="flex items-center space-x-3 bg-gray-50 p-3 rounded-2xl border border-gray-100">
+                        <img src="${item.image}" class="w-16 h-16 object-cover rounded-xl border">
+                        <div class="flex-1">
+                            <h5 class="font-bold text-xs sm:text-sm text-gray-900 leading-tight">${item.name}</h5>
+                            <p class="text-[11px] text-gray-500 mt-0.5">Size: <span class="font-bold text-maroon-700">${item.size}</span> | PKR ${item.price.toLocaleString()}</p>
+                            
+                            <div class="flex items-center space-x-2 mt-2">
+                                <button onclick="changeQty(${index}, -1)" class="w-6 h-6 bg-white border border-gray-300 rounded-lg flex items-center justify-center text-xs font-bold hover:bg-gray-100">-</button>
+                                <span class="text-xs font-bold text-gray-800">${item.qty}</span>
+                                <button onclick="changeQty(${index}, 1)" class="w-6 h-6 bg-white border border-gray-300 rounded-lg flex items-center justify-center text-xs font-bold hover:bg-gray-100">+</button>
+                            </div>
+                        </div>
+                        <button onclick="removeFromCart(${index})" class="text-gray-400 hover:text-red-500 p-2">
+                            <i class="fa-solid fa-trash text-xs"></i>
+                        </button>
+                    </div>
+                `;
+            });
+
+            document.getElementById("cartSubtotal").innerText = `PKR ${subtotal.toLocaleString()}`;
+            document.getElementById("cartTotal").innerText = `PKR ${(subtotal + 250).toLocaleString()}`;
+        }
+
+        function changeQty(index, delta) {
+            cart[index].qty += delta;
+            if (cart[index].qty <= 0) {
+                cart.splice(index, 1);
+            }
+            updateCartBadge();
+            updateCartUI();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartBadge();
+            updateCartUI();
+        }
+
+        // WhatsApp Checkout Logic
+        function openCheckoutForm() {
+            if (cart.length === 0) {
+                showToast("Your cart is empty! Add a shoe first.", "error");
+                return;
+            }
+            document.getElementById("cartDrawer").classList.add("hidden");
+            document.getElementById("checkoutModal").classList.remove("hidden");
+        }
+
+        function closeCheckoutForm() {
+            document.getElementById("checkoutModal").classList.add("hidden");
+        }
+
+        function submitWhatsAppOrder(e) {
+            e.preventDefault();
+            const name = document.getElementById("custName").value;
+            const phone = document.getElementById("custPhone").value;
+            const city = document.getElementById("custCity").value;
+            const address = document.getElementById("custAddress").value;
+
+            let text = `*NEW FOOTWEAR ORDER - WALK WAY PAKISTAN*%0A%0A`;
+            text += `*CUSTOMER DETAILS:*%0A`;
+            text += `• *Name:* ${name}%0A`;
+            text += `• *Phone:* ${phone}%0A`;
+            text += `• *City:* ${city}%0A`;
+            text += `• *Address:* ${address}%0A%0A`;
+            text += `*ORDERED ITEMS:*%0A`;
+
+            let subtotal = 0;
+            cart.forEach((item, i) => {
+                const itemTotal = item.price * item.qty;
+                subtotal += itemTotal;
+                text += `${i + 1}. ${item.name}%0A   - *Size:* ${item.size} | *Qty:* ${item.qty} | *Price:* PKR ${itemTotal.toLocaleString()}%0A`;
+            });
+
+            const delivery = 250;
+            const grandTotal = subtotal + delivery;
+
+            text += `%0A*PAYMENT SUMMARY:*%0A`;
+            text += `• Subtotal: PKR ${subtotal.toLocaleString()}%0A`;
+            text += `• Shipping: PKR ${delivery}%0A`;
+            text += `• *GRAND TOTAL:* PKR ${grandTotal.toLocaleString()}%0A`;
+            text += `• *Payment Method:* Cash on Delivery (COD)`;
+
+            // WhatsApp link redirection
+            const targetPhone = "923001234567";
+            const waUrl = `https://wa.me/${targetPhone}?text=${text}`;
+
+            window.open(waUrl, "_blank");
+            closeCheckoutForm();
+            cart = [];
+            updateCartBadge();
+            showToast("Order details sent to WhatsApp!", "success");
+        }
+
+        // Mobile Nav Toggle
+        function toggleMobileNav() {
+            document.getElementById("mobileNav").classList.toggle("hidden");
+        }
+
+        // Custom Toast Helper
+        function showToast(message, type = 'info') {
+            const container = document.getElementById("toastContainer");
+            const toast = document.createElement("div");
+
+            const bgColor = type === 'success' ? 'bg-green-700' : (type === 'error' ? 'bg-red-700' : 'bg-gray-900');
+
+            toast.className = `${bgColor} text-white text-xs font-bold px-4 py-3 rounded-xl shadow-xl flex items-center gap-2 animate-in fade-in slide-in-from-top-2 pointer-events-auto`;
+            toast.innerHTML = `
+                <i class="fa-solid ${type === 'success' ? 'fa-circle-check' : 'fa-circle-info'}"></i>
+                <span>${message}</span>
+            `;
+
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+
+        // Initial Load
+        window.onload = () => {
+            renderProducts();
+        };
+    </script>
+</body>
+
+</html>
+```eod
