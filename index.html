@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WalkWay Mens Wear | Premium Footwear Pakistan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="bg-[#6B1D2F] text-[#F5E6B8] text-xs sm:text-sm text-center py-2 px-3 tracking-wide">Flat PKR 250
+        Shipping across Pakistan &nbsp;|&nbsp; Cash on Delivery (COD) Available</div>
+
+    <header class="sticky top-0 z-30 bg-[#FDFBF7]/95 backdrop-blur border-b border-[#eadfcf]">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center gap-4">
+            <button class="lg:hidden text-[#6B1D2F]" onclick="document.getElementById('mnav').classList.toggle('hide')"
+                aria-label="Menu"><span class="ic" data-i="menu"></span></button>
+            <a href="#" onclick="setNav('')"
+                class="serif text-2xl sm:text-3xl font-bold text-[#6B1D2F] whitespace-nowrap">WalkWay <span
+                    class="text-[#D4AF37]">Mens Wear</span></a>
+            <nav class="hidden lg:flex gap-7 ml-8 text-sm font-medium" id="dnav"></nav>
+            <div class="flex-1"></div>
+            <div
+                class="hidden md:flex items-center bg-white border border-[#eadfcf] rounded-full px-4 w-64 focus-within:border-[#6B1D2F]">
+                <span class="ic text-slate-400" data-i="search"></span><input id="q"
+                    oninput="state.q=this.value;render()" placeholder="Search shoes"
+                    class="w-full bg-transparent px-2 py-2 text-sm focus:outline-none">
+            </div>
+            <button onclick="toggleWishView()" class="relative text-[#6B1D2F]" aria-label="Wishlist"><span class="ic"
+                    data-i="heart"></span><span id="wc"
+                    class="absolute -top-2 -right-2 bg-[#D4AF37] text-[#1F2937] text-[10px] font-semibold w-5 h-5 rounded-full grid place-items-center">0</span></button>
+            <button onclick="openCart()" class="relative text-[#6B1D2F]" aria-label="Cart"><span class="ic"
+                    data-i="bag"></span><span id="cc"
+                    class="absolute -top-2 -right-2 bg-[#6B1D2F] text-white text-[10px] font-semibold w-5 h-5 rounded-full grid place-items-center">0</span></button>
+        </div>
+        <div id="mnav" class="hide lg:hidden px-4 pb-3 flex flex-col gap-3 text-sm font-medium"></div>
+        <div class="md:hidden px-4 pb-3"><input oninput="state.q=this.value;render()" placeholder="Search shoes"
+                class="w-full bg-white border border-[#eadfcf] rounded-full px-4 py-2 text-sm"></div>
+    </header>
+
+    <section class="relative overflow-hidden bg-[#6B1D2F]">
+        <img src="images/photo-1533867617858-e7b97e060509.jpg" alt="Handcrafted leather shoes"
+            class="absolute inset-0 w-full h-full object-cover"
+            onerror="this.onerror=function(){this.src=FB[0]};this.src='sheos/images/image1.jpeg'">
+        <div class="absolute inset-0 bg-gradient-to-r from-[#4a0f1f] via-[#6B1D2F]/85 to-[#6B1D2F]/30"></div>
+        <div class="relative max-w-7xl mx-auto px-4 py-20 sm:py-32">
+            <div class="max-w-xl">
+                <h1 class="serif text-5xl sm:text-7xl font-semibold text-white leading-[1.05]">Crafted for Comfort,
+                    Designed to Impress</h1>
+                <p class="mt-6 text-[#f3e7d3] text-lg leading-relaxed">Explore our Curated collection of foot wear .
+                    Premium Leather Shoes, Traditional Peshawari Chappals & Casual Sneakers.</p>
+                <a href="#shop"
+                    class="inline-block mt-9 bg-[#D4AF37] hover:bg-[#c29f2c] text-[#2b0a13] font-semibold px-9 py-4 rounded-full transition">Shop
+                    Now</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="shop" class="max-w-7xl mx-auto px-4 py-14">
+        <h2 class="serif text-4xl font-semibold text-[#6B1D2F]" id="ttl">The Collection</h2>
+        <div class="h-0.5 w-16 bg-[#D4AF37] mt-3"></div>
+        <div id="chips" class="flex flex-wrap gap-2 mt-6"></div>
+        <div id="grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 mt-8"></div>
+        <p id="empty" class="hide text-center text-slate-500 py-16">No shoes match your search. Try another category.
+        </p>
+    </section>
+
+    <section class="bg-white border-y border-[#eadfcf]">
+        <div class="max-w-7xl mx-auto px-4 py-12 grid sm:grid-cols-3 gap-8 text-center">
+            <div class="flex flex-col items-center text-[#6B1D2F]"><span class="ic" data-i="refresh" data-s="36"></span>
+                <h3 class="serif text-xl font-semibold mt-3 text-[#1F2937]">7-Day Easy Exchange</h3>
+                <p class="text-sm text-slate-500 mt-1">Wrong size? Exchange within 7 days.</p>
+            </div>
+            <div class="flex flex-col items-center text-[#6B1D2F]"><span class="ic" data-i="shield" data-s="36"></span>
+                <h3 class="serif text-xl font-semibold mt-3 text-[#1F2937]">100% Genuine Leather</h3>
+                <p class="text-sm text-slate-500 mt-1">Guaranteed real leather on every pair.</p>
+            </div>
+            <div class="flex flex-col items-center text-[#6B1D2F]"><span class="ic" data-i="truck" data-s="36"></span>
+                <h3 class="serif text-xl font-semibold mt-3 text-[#1F2937]">COD All Over Pakistan</h3>
+                <p class="text-sm text-slate-500 mt-1">Pay when your order arrives.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-[#2b0f17] text-[#d9c9c9]">
+        <div class="max-w-7xl mx-auto px-4 py-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-10 text-sm">
+            <div>
+                <div class="serif text-2xl text-white font-semibold">StepPaki <span class="text-[#D4AF37]">Luxury</span>
+                </div>
+                <p class="mt-3 leading-relaxed">Handcrafted shoes and chappals, delivered across Pakistan.</p>
+                <div class="flex gap-4 mt-5 text-[#D4AF37]"><a href="#" aria-label="Facebook"><span class="ic"
+                            data-i="fb"></span></a><a href="#" aria-label="Instagram"><span class="ic"
+                            data-i="ig"></span></a><a href="#" aria-label="WhatsApp"><span class="ic"
+                            data-i="wa"></span></a></div>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-3">Shop</h4>
+                <ul class="space-y-2">
+                    <li><a href="#shop" onclick="setNav('men')">Men's</a></li>
+                    <li><a href="#shop" onclick="setNav('women')">Women's</a></li>
+                    <li><a href="#shop" onclick="setNav('chappal')">Peshawari Khussa &amp; Chappal</a></li>
+                    <li><a href="#shop" onclick="setNav('sale')">Sale</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-3">Help</h4>
+                <ul class="space-y-2">
+                    <li>7-Day Exchange Policy</li>
+                    <li>Shipping &amp; Delivery</li>
+                    <li>Call: 0300-1234567</li>
+                    <li><a href="#" onclick="openGuide();return false">Size Guide</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-3">Newsletter</h4>
+                <p class="mb-3">New arrivals and offers in your inbox.</p>
+                <div class="flex"><input id="nl" type="email" placeholder="Your email"
+                        class="flex-1 min-w-0 rounded-l-full px-4 py-2.5 text-slate-800"><button onclick="subscribe()"
+                        class="bg-[#D4AF37] text-[#2b0a13] px-5 rounded-r-full font-semibold">Join</button></div>
+            </div>
+        </div>
+        <div class="border-t border-white/10 text-center text-xs py-5">© <span id="yr"></span> StepPaki Luxury. All
+            rights reserved. Made in Pakistan.</div>
+    </footer>
+
+    <div id="ov" class="hide fixed inset-0 bg-[#1a0910]/60 z-40" onclick="closeAll()"></div>
+
+    <div id="pm" class="hide fixed inset-0 z-50 grid place-items-center p-3 overflow-y-auto pointer-events-none">
+        <div class="pointer-events-auto bg-white rounded-3xl max-w-4xl w-full grid md:grid-cols-2 gap-8 p-6 relative my-6 shadow-2xl"
+            id="pmb"></div>
+    </div>
+
+    <div id="gm" class="hide fixed inset-0 z-[60] grid place-items-center p-4 pointer-events-none">
+        <div class="pointer-events-auto bg-white rounded-2xl p-6 max-w-md w-full shadow-2xl">
+            <div class="flex justify-between items-center mb-3">
+                <h3 class="serif text-2xl font-semibold text-[#6B1D2F]">PK Size Guide</h3><button
+                    onclick="gm.classList.add('hide')" aria-label="Close"><span class="ic" data-i="x"></span></button>
+            </div>
+            <table class="w-full text-sm text-center">
+                <thead class="bg-[#f6efe4]">
+                    <tr>
+                        <th class="p-2">PK</th>
+                        <th>UK</th>
+                        <th>EU</th>
+                        <th>Foot (cm)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="p-2">39</td>
+                        <td>6</td>
+                        <td>39</td>
+                        <td>24.5</td>
+                    </tr>
+                    <tr>
+                        <td class="p-2">40</td>
+                        <td>7</td>
+                        <td>40</td>
+                        <td>25.0</td>
+                    </tr>
+                    <tr>
+                        <td class="p-2">41</td>
+                        <td>8</td>
+                        <td>41</td>
+                        <td>25.7</td>
+                    </tr>
+                    <tr>
+                        <td class="p-2">42</td>
+                        <td>9</td>
+                        <td>42</td>
+                        <td>26.5</td>
+                    </tr>
+                    <tr>
+                        <td class="p-2">43</td>
+                        <td>10</td>
+                        <td>43</td>
+                        <td>27.2</td>
+                    </tr>
+                    <tr>
+                        <td class="p-2">44</td>
+                        <td>11</td>
+                        <td>44</td>
+                        <td>28.0</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="text-xs text-slate-500 mt-3">Between sizes? Choose the larger size, especially for leather and
+                khussa. Women's sizes run 36 to 41.</p>
+        </div>
+    </div>
+
+    <aside id="drawer"
+        class="fixed top-0 right-0 h-full w-full sm:w-[430px] bg-[#FDFBF7] z-50 translate-x-full flex flex-col shadow-2xl">
+        <div class="p-5 border-b border-[#eadfcf] flex justify-between items-center">
+            <h3 class="serif text-2xl font-semibold text-[#6B1D2F]">Your Bag</h3><button onclick="closeAll()"
+                aria-label="Close"><span class="ic" data-i="x"></span></button>
+        </div>
+        <div id="citems" class="flex-1 overflow-y-auto p-5 space-y-5"></div>
+        <div class="p-5 border-t border-[#eadfcf] bg-white space-y-1 text-sm" id="csum"></div>
+    </aside>
+
+    <div id="co" class="hide fixed inset-0 z-[55] grid place-items-center p-3 overflow-y-auto pointer-events-none">
+        <div class="pointer-events-auto bg-white rounded-3xl max-w-lg w-full p-7 my-6 relative shadow-2xl">
+            <button onclick="closeAll()" class="absolute top-4 right-5" aria-label="Close"><span class="ic"
+                    data-i="x"></span></button>
+            <h3 class="serif text-3xl font-semibold text-[#6B1D2F] mb-4">Checkout</h3>
+            <div class="space-y-3 text-sm">
+                <input id="fn" placeholder="Full Name"
+                    class="w-full border border-[#e3d8c8] rounded-xl px-4 py-3 focus:border-[#6B1D2F] focus:outline-none">
+                <input id="ph" placeholder="Mobile / WhatsApp (03XX-XXXXXXX)" inputmode="tel"
+                    class="w-full border border-[#e3d8c8] rounded-xl px-4 py-3 focus:border-[#6B1D2F] focus:outline-none">
+                <select id="ct" class="w-full border border-[#e3d8c8] rounded-xl px-4 py-3 bg-white">
+                    <option value="">Select City</option>
+                    <option>Karachi</option>
+                    <option>Lahore</option>
+                    <option>Islamabad</option>
+                    <option>Rawalpindi</option>
+                    <option>Peshawar</option>
+                    <option>Multan</option>
+                    <option>Quetta</option>
+                    <option>Hyderabad</option>
+                    <option>Faisalabad</option>
+                    <option>Sialkot</option>
+                    <option>Gujranwala</option>
+                    <option>Other</option>
+                </select>
+                <textarea id="ad" rows="3" placeholder="Complete shipping address (house, street, area)"
+                    class="w-full border border-[#e3d8c8] rounded-xl px-4 py-3 focus:border-[#6B1D2F] focus:outline-none"></textarea>
+                <div class="font-semibold pt-1">Payment Method</div>
+                <label class="flex gap-3 items-center border border-[#e3d8c8] rounded-xl p-3 cursor-pointer"><input
+                        type="radio" name="pay" value="Cash on Delivery (COD)" checked class="accent-[#6B1D2F]"> Cash on
+                    Delivery (COD)</label>
+                <label class="flex gap-3 items-center border border-[#e3d8c8] rounded-xl p-3 cursor-pointer"><input
+                        type="radio" name="pay" value="JazzCash / EasyPaisa" class="accent-[#6B1D2F]"> JazzCash /
+                    EasyPaisa</label>
+                <p id="payn" class="hide text-xs bg-[#faf3dc] text-[#6b5611] rounded-lg p-3">Send payment to
+                    JazzCash/EasyPaisa 0300-1234567 (StepPaki) and share the screenshot on WhatsApp.</p>
+                <div id="cosum" class="bg-[#f6efe4] rounded-xl p-4 font-medium"></div>
+                <p id="err" class="text-red-700 text-xs"></p>
+                <button onclick="placeOrder()"
+                    class="w-full bg-[#6B1D2F] hover:bg-[#800020] text-white font-semibold py-4 rounded-full transition flex items-center justify-center gap-2"><span
+                        class="ic" data-i="wa"></span>Confirm Order via WhatsApp</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast"
+        class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-[#1F2937] text-white px-6 py-3 rounded-full text-sm z-[70] opacity-0 pointer-events-none transition-opacity">
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+
+</html>
